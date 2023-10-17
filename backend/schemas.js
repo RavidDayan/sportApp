@@ -1,14 +1,14 @@
 import mongoose from "mongoose";
 
-const excerciseSchema = new mongoose.Schema({
+const exerciseSchema = new mongoose.Schema({
     name: { type: String, unique: true },
     description: { type: String, required: true },
 });
-const Excercise = mongoose.model('Excercise', excerciseSchema);
+const Exercise = mongoose.model('Excercise', exerciseSchema);
 
 const SetSchema = new mongoose.Schema({
     id: { type: String, unique: true },
-    excercise: { type: Excercise, required: true },
+    excercise: { type: Exercise, required: true },
     reps: { type: Number, required: true },
     timer: { type: Number },
     result: { type: [Number], default: [0, 0, 0] },
