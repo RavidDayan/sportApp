@@ -2,8 +2,8 @@ import express, { request, response } from "express";
 import { PORT, mongoDB } from "./config.js";
 import mongoose from "mongoose";
 import cors from "cors";
-import { programData } from "../Test/pogramData.js";
 import ProgramModel from "./models/programModel.js";
+import User from "./models/userSchemas.js";
 import Exercise from "./models/exerciseModel.js";
 
 const app = express();
@@ -19,12 +19,20 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
-app.get("/currentProgram", (req, res) => {
+
+app.get("/currentProgram", async (req, res) => {
   try {
-    const program = ProgramModel.find().then((result) => {
-      res.send(result);
-      console.log(result);
-    });
+    const user = await User.findOne({ firstName: "ravid" });
+    res.send(user.currentProgram);
+  } catch (error) {
+    console.log(error);
+  }
+});
+app.get("/newProgram", async (req, res) => {
+  try {
+    const exerciseList = await Exercise.find();
+    console.log(exerciseList);
+    res.send(exerciseList);
   } catch (error) {
     console.log(error);
   }
