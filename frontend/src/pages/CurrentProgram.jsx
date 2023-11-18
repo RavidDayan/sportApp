@@ -18,7 +18,7 @@ function CurrentProgram() {
         const response = await axios.get(
           "http://localhost:5555/currentProgram"
         );
-        const data = response.data[0];
+        const data = response.data;
         setProgram(data);
       } catch (error) {
         console.error("Error:", error);
