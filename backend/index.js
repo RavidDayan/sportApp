@@ -1,5 +1,6 @@
 import express, { request, response } from "express";
-import { PORT, mongoDB } from "./config.js";
+import session from "express-session";
+import { PORT, mongoDB, sessionSecretKey } from "./config.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import ProgramModel from "./models/programModel.js";
@@ -8,6 +9,14 @@ import Exercise from "./models/exerciseModel.js";
 
 const app = express();
 app.use(cors());
+app.use(
+  session({
+    secret: sessionSecretKey,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(express.json());
 mongoose
   .connect(mongoDB)
   .then(() => {
@@ -19,7 +28,21 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+app.post("/", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    console.log(email, password);
 
+    if (email === "hello@gmail.com" && password === "walla") {
+      req.session.user ={email};
+      res.send("successfulLogin");
+    } else {
+      res.send("unsuccessfulLogin");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});
 app.get("/currentProgram", async (req, res) => {
   try {
     const user = await User.findOne({ firstName: "ravid" });
