@@ -37,3 +37,12 @@ app.get("/newProgram", async (req, res) => {
     console.log(error);
   }
 });
+app.get("/programHistory", async (req, res) => {
+  try {
+    const user = await User.findOne({ firstName: "ravid" });
+    console.log(user.programs);
+    res.send(user.programs);
+  } catch (error) {
+    console.log(error);
+  }
+});
