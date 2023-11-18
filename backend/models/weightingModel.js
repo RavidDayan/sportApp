@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const weightingSchema = new mongoose.Schema({
+export const weightingSchema = new mongoose.Schema({
     weight: { type: String, unique: true },
     date: { type: Date, default: new Date() },
 });

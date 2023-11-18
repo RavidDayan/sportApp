@@ -13,11 +13,5 @@ function SetCard(props) {
   for (let i = 0; i < setSets; i++) {
     repCards.push(<RepCard key={i} time={setTime} />);
   }
-  return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col>{repCards}</Col>
-      </Row>
-    </Container>
-  );
+  return <>{repCards}</>;
 }

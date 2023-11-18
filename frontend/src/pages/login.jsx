@@ -6,6 +6,7 @@ function Login(){
         <input type="email"></input>
         <label>password</label>
         <input type="password"></input>
+        <button type="submit" >submit</button>
     </form>
     );
 };

@@ -4,6 +4,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
 
 export default RepCard;
 
@@ -84,16 +86,20 @@ function RepCard(prop) {
     setButton(startButton);
   }
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col className="align-self-center" xs={3}>
-          {startStopButton}
-        </Col>
-        <Col className="align-self-center" xs={3}>
-          {resetButton}
-        </Col>
-        <Col className="align-self-center">{progressBar}</Col>
+    <>
+    <Row>
+      <Col className="p-0">
+        <InputGroup hasValidation={true}>
+          <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+          <Form.Control aria-label="Text input with checkbox" />
+        </InputGroup>
+      </Col>
+      <Col>
+        {startStopButton}
+        {resetButton}
+      </Col>
       </Row>
-    </Container>
+      <Row className="mt-1 mb-3">{progressBar}</Row>
+      </>
   );
 }

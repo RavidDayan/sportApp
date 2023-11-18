@@ -11,4 +11,4 @@ export const SetSchema = new mongoose.Schema({
     result: { type: [Number], default: [0, 0, 0] },
 });
 const SetModel = mongoose.model('Set', SetSchema);
-export default SetModel;
+export default Set;
